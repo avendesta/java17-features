@@ -8,9 +8,17 @@ public class RecordExample {
     }
 
     record Name(String firstName, String lastName) {
+        Name {
+            if(firstName.trim().length()*lastName.trim().length() == 0){
+                throw new IllegalStateException("You must have a first and last name!");
+            }
+        }
+        Name(String firstName){
+            this(firstName, "");    // canonical constructor will/should always be called
+        }
     }
-    // can not be extended
       /*
+    // can not be extended
     record Name(String firstName, String lastName) extends Object{
     }
      */
